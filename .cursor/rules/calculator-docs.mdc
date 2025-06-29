@@ -1,0 +1,186 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Cursor Rules for Stretch Ceiling Price Calculator
+
+## Project Context
+You are working on a React + TypeScript stretch ceiling price calculator with admin panel and PDF export functionality.
+
+## Code Style & Architecture
+
+### TypeScript Standards
+- Always use strict TypeScript with proper interfaces
+- Prefer interfaces over types for object definitions
+- Use generic types for reusable components
+- Export interfaces from dedicated type files
+- Use enum for fixed value sets (ceiling types, fabric segments)
+
+### React Best Practices
+- Use functional components with hooks exclusively
+- Implement proper error boundaries
+- Use React.memo for performance optimization
+- Prefer custom hooks for complex logic
+- Use Context API for global state (calculator state, admin state)
+
+### File Naming Conventions
+- Components: PascalCase (e.g., `PriceCalculator.tsx`)
+- Hooks: camelCase with 'use' prefix (e.g., `useCalculator.ts`)
+- Types: camelCase with '.types.ts' suffix
+- Utils: camelCase with '.utils.ts' suffix
+- Constants: UPPER_SNAKE_CASE
+
+## Component Structure
+
+### Standard Component Template
+```typescript
+import React from 'react';
+import { motion } from 'framer-motion';
+
+interface ComponentNameProps {
+  // Props interface
+}
+
+export const ComponentName: React.FC<ComponentNameProps> = ({ }) => {
+  // Hooks
+  // State
+  // Effects
+  // Handlers
+  // Render
+  
+  return (
+    <motion.div {...animationProps}>
+      {/* Component JSX */}
+    </motion.div>
+  );
+};
+```
+
+### Animation Standards
+- Use Framer Motion for all animations
+- Define animation variants in separate constants
+- Use consistent timing (0.3s for quick, 0.5s for complex)
+- Prefer ease-out for entrances, ease-in for exits
+
+### Styling Guidelines
+- Use Tailwind CSS utility classes primarily
+- Create custom components for repeated patterns
+- Use CSS-in-JS only for dynamic styles
+- Follow mobile-first responsive design
+- Implement dark mode support with CSS variables
+
+## Data Management
+
+### Calculator State Structure
+```typescript
+interface CalculatorState {
+  selections: {
+    ceilingProfile: CeilingProfile | null;
+    fabricType: FabricType | null;
+    curtainRail: CurtainRail | null;
+    lighting: LightingOption[];
+  };
+  measurements: Measurements;
+  pricing: {
+    subtotal: number;
+    tax: number;
+    total: number;
+  };
+}
+```
+
+### Price Calculation Rules
+- All prices stored in cents to avoid floating point issues
+- Support multiple units: m², linear meters, pieces
+- Include installation costs separately
+- Apply discounts/markups at calculation level
+
+## Error Handling
+- Use React Error Boundaries for component errors
+- Implement form validation with proper error messages
+- Handle async operations with loading states
+- Log errors to console in development, external service in production
+
+## Performance Requirements
+- Lazy load admin panel components
+- Debounce calculation inputs (300ms)
+- Memoize expensive calculations
+- Use React.memo for pure components
+- Implement virtual scrolling for large lists
+
+## Testing Patterns
+- Write unit tests for calculation logic
+- Test component interactions with user events
+- Mock external dependencies (PDF generation, file operations)
+- Use data-testid attributes for reliable element selection
+
+## PDF Export Specifications
+- Generate detailed quotes with company branding
+- Include itemized pricing breakdown
+- Add terms and conditions
+- Support multiple currencies
+- Implement print-friendly layouts
+
+## Admin Panel Rules
+- Protect with authentication
+- Implement role-based permissions
+- Add audit logging for price changes
+- Support bulk operations (CSV import/export)
+- Include data validation and backups
+
+## Code Organization
+- Group related components in feature folders
+- Separate business logic from UI components
+- Use barrel exports (index.ts) for clean imports
+- Keep utils pure and testable
+- Place types close to their usage
+
+## Dependencies Management
+- Use exact versions for critical dependencies
+- Prefer lighter alternatives when possible
+- Document why each dependency is needed
+- Regular security audits with npm audit
+
+## Responsive Design Rules
+- Mobile-first approach (320px minimum)
+- Tablet breakpoint at 768px
+- Desktop at 1024px+
+- Touch-friendly interactive elements (44px minimum)
+- Keyboard navigation support
+
+## Accessibility Requirements
+- Semantic HTML structure
+- ARIA labels for complex interactions
+- Color contrast ratio 4.5:1 minimum
+- Screen reader compatibility
+- Keyboard-only navigation support
+
+## Git Commit Conventions
+- feat: new feature
+- fix: bug fix
+- docs: documentation
+- style: formatting, css changes
+- refactor: code refactoring
+- test: adding tests
+- chore: maintenance tasks
+
+## Environment-Specific Rules
+- Development: Enable React DevTools, verbose logging
+- Staging: Mirror production, enable debugging
+- Production: Minimize bundle size, disable logging
+
+## Security Guidelines
+- Validate all user inputs
+- Sanitize data before PDF generation
+- Use HTTPS for all external requests
+- Implement CSP headers
+- Regular dependency updates for security patches
+
+When writing code, always consider:
+1. Is this component reusable?
+2. Are animations smooth and purposeful?
+3. Is the code accessible?
+4. Does it work on mobile devices?
+5. Is the calculation logic testable?
+6. Are error states handled gracefully?

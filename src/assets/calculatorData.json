@@ -1,0 +1,15 @@
+{
+  "ceilingProfiles": [
+    { "id": "basic", "name": "Basic Profile", "pricePerMeter": 500 },
+    { "id": "premium", "name": "Premium Profile", "pricePerMeter": 900 }
+  ],
+  "fabricTypes": [
+    { "id": "matte", "name": "Matte Fabric", "pricePerSqM": 1200 },
+    { "id": "glossy", "name": "Glossy Fabric", "pricePerSqM": 1500 }
+  ],
+  "lightingOptions": [
+    { "id": "none", "name": "No Lighting", "pricePerPiece": 0 },
+    { "id": "spotlight", "name": "Spotlight", "pricePerPiece": 800 },
+    { "id": "chandelier", "name": "Chandelier", "pricePerPiece": 2500 }
+  ]
+} 
